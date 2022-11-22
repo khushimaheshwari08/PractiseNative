@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,6 +13,20 @@ import {
 const SignUp = () => {
 
   const navigation = useNavigation();
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onLogin = async () => {
+    if (email !== '' && password !== '') {
+      await AsyncStorage.setItem('isLogin', JSON.stringify(true));
+      await AsyncStorage.setItem('email',email );
+      await AsyncStorage.setItem('password', password);
+      navigation.replace('dashboard');
+      } else {
+        alert('Enter valid username and password');
+      }
+  }
 
 
   return (
@@ -50,6 +65,8 @@ const SignUp = () => {
             style={styles.input}
             placeholder="Name"
             placeholderTextColor="gray"
+            value={name}
+            onChangeText={name => setName(name)}
           />
         </View>
         <View style={styles.inputParent}>
@@ -57,6 +74,8 @@ const SignUp = () => {
             style={styles.input}
             placeholder="Email"
             placeholderTextColor="gray"
+            value={email}
+            onChangeText={email => setEmail(email)}
           />
         </View>
         <View style={styles.inputParent}>
@@ -71,12 +90,15 @@ const SignUp = () => {
             }}
           />
           <TextInput
+          secureTextEntry={true}
             style={styles.input}
             placeholder="Password"
             placeholderTextColor="gray"
+            value={password}
+            onChangeText={password => setPassword(password)}
           />
         </View>
-
+        <TouchableOpacity onPress={() => onLogin()}>
         <View style={[styles.signBtn, styles.inputParent]}>
           <Image
             source={require('../../assets/adminIcons.png')}
@@ -90,6 +112,7 @@ const SignUp = () => {
           />
           <Text style={[styles.signText,styles.joinUs]}>Join us</Text>
         </View>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('login')}>
       <View style={styles.join}>
@@ -182,6 +205,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 6,
     paddingLeft: 10,
+    color:'black'
   },
 
   signBtn: {

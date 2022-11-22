@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -11,24 +11,46 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [emailData, setEmailData] = useState('');
+  const [passwordData, setPasswordData] = useState('');
 
   const onDashboard = async () => {
     setLoading(true)
-    if (email === '123@gmail.com' && password === '123456') {
-      
+    if (email === emailData && password === passwordData) {
+      setTimeout (async()=>{
       await AsyncStorage.setItem('isLogin', JSON.stringify(true));
       navigation.replace('dashboard');
+      }, 2000)
      
     } else {
       alert('Enter valid username and password');
       setLoading(false)
     }
   };
+
+  const SignupData = async()=> {
+
+    let retrivedEmail = await AsyncStorage.getItem('email');
+    let emailValue = JSON.parse(retrivedEmail);
+    setEmailData(emailValue);
+    let recPassword = await AsyncStorage.getItem('password');
+    let passwordValue = JSON.parse(recPassword);
+    setPasswordData(passwordValue);
+  }
+  // console.log(emailData)
+  // console.log(passwordData)
+  
+
+  useEffect(() => {
+    SignupData();
+  }, [])
+  
 
   return (
     <View style={styles.container}>
@@ -106,7 +128,7 @@ const Login = () => {
         <TouchableOpacity onPress={() => onDashboard()}>
           <View style={styles.logBtn}>
           
-       <Text style={styles.loginText}> {loading === true ? <ActivityIndicator size="large" color="#fff" /> : "Login"}</Text>
+       <Text style={styles.loginText}> {loading === true ? <ActivityIndicator size="small" color="#fff" /> : "Login"}</Text>
      
           </View>
         </TouchableOpacity>
