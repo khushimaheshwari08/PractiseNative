@@ -46,16 +46,16 @@ const SignUp = () => {
           <View style={[styles.button, styles.shadowProp]}>
           <Image
               source={require('../../assets/googleIcon.png')}
-              style={{width: 20, height: 20,marginTop:3}}
+              style={{width: 20, height: 25, marginTop: 2}}
             />
-            <Text style={styles.googlefb}>Google</Text>
+            <Text style={[styles.googlefb,styles.google]}>Google</Text>
           </View>
           <View style={[styles.button, styles.shadowProp]}>
           <Image
               source={require('../../assets/fbbb.png')}
-              style={{width: 22, height: 18,marginBottom:1}}
+              style={{width: 22, height: 25, marginBottom: 2}}
             />
-            <Text style={styles.googlefb}>Facebook</Text>
+            <Text style={[styles.googlefb,styles.fb]}>Facebook</Text>
           </View>
         </View>
 
@@ -109,7 +109,7 @@ const SignUp = () => {
               left:100,
             }}
           />
-          <Text style={[styles.signText,styles.joinUs]}>Join us</Text>
+          <Text style={[styles.signText,styles.joinUs]}>Join Us</Text>
         </View>
         </TouchableOpacity>
       </View>
@@ -192,7 +192,14 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
     textAlign: 'center',
+  },
+  
+  google:{
     marginLeft: 7,
+  },
+
+  fb:{
+    marginLeft:1,
   },
 
   input: {

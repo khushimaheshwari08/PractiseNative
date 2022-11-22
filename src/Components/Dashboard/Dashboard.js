@@ -13,11 +13,13 @@ const Dashboard = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => onLogout()}>
+   
         <View style={styles.logoutBtn}>
+        <TouchableOpacity onPress={() => onLogout()}>
           <Text style={styles.logoutText}>Logout</Text>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+     
     </View>
   );
 };

@@ -9,34 +9,35 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  TouchableWithoutFeedback,
 } from 'react-native';
-
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('kumar123@gmail.com');
   const [password, setPassword] = useState('123');
   const [loading, setLoading] = useState(false);
- 
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+  const [text, setText] = useState(true);
+
   const onDashboard = async () => {
-    let temp= await AsyncStorage.getItem('userData');
-    setLoading(true)
-    if(temp) {
+    let temp = await AsyncStorage.getItem('userData');
+    setLoading(true);
+    if (temp) {
       let item = JSON.parse(temp);
       if (email === item.email && password === item.password) {
-        setTimeout (async()=>{
+        setTimeout(async () => {
           await AsyncStorage.setItem('isLogin', JSON.stringify(true));
           navigation.replace('dashboard');
-          }, 2000)     
+        }, 2000);
+      } else {
+        alert('Incorrect username and password');
+        setLoading(false);
+      }
     } else {
-      alert('Incorrect username and password');
-      setLoading(false)
-    }
-  } else {
       alert('Incorrect username and password');
     }
   };
-  
 
   return (
     <View style={styles.container}>
@@ -51,7 +52,7 @@ const Login = () => {
           <Text style={styles.welcome}>Welcome Back</Text>
         </View>
         <Text style={styles.course}>
-          You can search course,apply course and find scholarship for abroad
+          You can search course, apply course and find scholarship for abroad
           studies
         </Text>
 
@@ -59,14 +60,14 @@ const Login = () => {
           <View style={[styles.button, styles.shadowProp]}>
             <Image
               source={require('../../assets/googleIcon.png')}
-              style={{width: 20, height: 20, marginTop: 3}}
+              style={{width: 20, height: 25, marginTop: 2}}
             />
             <Text style={styles.googlefb}>Google</Text>
           </View>
           <View style={[styles.button, styles.shadowProp]}>
             <Image
               source={require('../../assets/fbbb.png')}
-              style={{width: 22, height: 18, marginBottom: 1}}
+              style={{width: 22, height: 25, marginBottom: 2}}
             />
             <Text style={styles.googlefb}>Facebook</Text>
           </View>
@@ -87,35 +88,64 @@ const Login = () => {
             style={styles.input}
             placeholder="Enter your Email"
             placeholderTextColor="gray"
+            autoFocus={true}
             value={email}
             onChangeText={email => setEmail(email)}
           />
         </View>
         <View style={styles.inputParent}>
-          <Image
-            source={require('../../assets/hideIcons.png')}
-            style={{
-              width: 20,
-              height: 25,
+          <TouchableOpacity
+            onPress={() => setIsVisiblePassword(!isVisiblePassword)}
+            style=
+            {{
+              width: 40,
+              height: 45,
               position: 'absolute',
               right: 40,
               top: 11,
-            }}
-          />
+              zIndex: 999,
+            }}>
+            {isVisiblePassword ? (
+              <Image
+                source={require('../../assets/hideIcons.png')}
+                style={{
+                  width: 20,
+                  height: 25,
+                
+                }}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/showIcons.png')}
+                style={{
+                  width: 20,
+                  height: 25,
+                }}
+              />
+            )}
+          </TouchableOpacity>
           <TextInput
             style={styles.input}
-            secureTextEntry={true}
+            // secureTextEntry={true}
+            secureTextEntry={isVisiblePassword}
             placeholder="Enter your Password"
             placeholderTextColor="gray"
             value={password}
             onChangeText={password => setPassword(password)}
           />
         </View>
-        <TouchableOpacity  disabled={email && password ? false : true} onPress={() => onDashboard()} >
+        <TouchableOpacity
+          disabled={email && password ? false : true}
+          onPress={() => onDashboard()}>
           <View style={styles.logBtn}>
-          
-       <Text style={styles.loginText}> {loading === true ? <ActivityIndicator size="small" color="#fff" /> : "Login"}</Text>
-     
+            <Text style={styles.loginText}>
+              {' '}
+              {loading === true ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                'Login'
+              )}
+            </Text>
           </View>
         </TouchableOpacity>
 
