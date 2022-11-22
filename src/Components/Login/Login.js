@@ -14,42 +14,28 @@ import {
 
 const Login = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('kumar123@gmail.com');
+  const [password, setPassword] = useState('123');
   const [loading, setLoading] = useState(false);
-  const [emailData, setEmailData] = useState('');
-  const [passwordData, setPasswordData] = useState('');
-
+ 
   const onDashboard = async () => {
+    let temp= await AsyncStorage.getItem('userData');
     setLoading(true)
-    if (email === emailData && password === passwordData) {
-      setTimeout (async()=>{
-      await AsyncStorage.setItem('isLogin', JSON.stringify(true));
-      navigation.replace('dashboard');
-      }, 2000)
-     
+    if(temp) {
+      let item = JSON.parse(temp);
+      if (email === item.email && password === item.password) {
+        setTimeout (async()=>{
+          await AsyncStorage.setItem('isLogin', JSON.stringify(true));
+          navigation.replace('dashboard');
+          }, 2000)     
     } else {
-      alert('Enter valid username and password');
+      alert('Incorrect username and password');
       setLoading(false)
     }
+  } else {
+      alert('Incorrect username and password');
+    }
   };
-
-  const SignupData = async()=> {
-
-    let retrivedEmail = await AsyncStorage.getItem('email');
-    let emailValue = JSON.parse(retrivedEmail);
-    setEmailData(emailValue);
-    let recPassword = await AsyncStorage.getItem('password');
-    let passwordValue = JSON.parse(recPassword);
-    setPasswordData(passwordValue);
-  }
-  // console.log(emailData)
-  // console.log(passwordData)
-  
-
-  useEffect(() => {
-    SignupData();
-  }, [])
   
 
   return (
@@ -125,7 +111,7 @@ const Login = () => {
             onChangeText={password => setPassword(password)}
           />
         </View>
-        <TouchableOpacity onPress={() => onDashboard()}>
+        <TouchableOpacity  disabled={email && password ? false : true} onPress={() => onDashboard()} >
           <View style={styles.logBtn}>
           
        <Text style={styles.loginText}> {loading === true ? <ActivityIndicator size="small" color="#fff" /> : "Login"}</Text>

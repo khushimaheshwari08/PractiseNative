@@ -18,13 +18,12 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
 
   const onLogin = async () => {
-    if (email !== '' && password !== '') {
-      await AsyncStorage.setItem('isLogin', JSON.stringify(true));
-      await AsyncStorage.setItem('email',email );
-      await AsyncStorage.setItem('password', password);
-      navigation.replace('dashboard');
+    if (name !== '' && email !== '' && password !== '') {
+      let temp={name: name,email:email,password:password};
+      await AsyncStorage.setItem('userData', JSON.stringify(temp));
+      navigation.replace('login');
       } else {
-        alert('Enter valid username and password');
+        alert('Please enter name, username and password');
       }
   }
 
