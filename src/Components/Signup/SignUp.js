@@ -44,15 +44,15 @@ const SignUp = () => {
         <Text style={styles.course}>Discover your perfect university</Text>
 
         <View style={styles.btn}>
-          <View style={[styles.button, styles.shadowProp]}>
-          <Image
+          <View elevation={12} style={styles.button}>
+            <Image
               source={require('../../assets/googleIcon.png')}
               style={{width: 20, height: 25, marginTop: 2}}
             />
             <Text style={[styles.googlefb,styles.google]}>Google</Text>
           </View>
-          <View style={[styles.button, styles.shadowProp]}>
-          <Image
+          <View elevation={12} style={styles.button}>
+            <Image
               source={require('../../assets/fbbb.png')}
               style={{width: 22, height: 25, marginBottom: 2}}
             />
@@ -183,7 +183,8 @@ const styles = StyleSheet.create({
 
   btn: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
+    // alignItems:'center',
     marginTop: 35,
     marginBottom: 25,
   },
@@ -195,11 +196,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
-    margin: 15,
-    gap: 5,
+    // padding: 15,
+    // margin: 15,
+    // gap: 5,
+    borderWidth:2,
     borderRadius: 6,
     marginBottom: 5,
+    borderColor:"#c9c7c7",
+    backgroundColor:'white'
   },
 
   shadowProp: {

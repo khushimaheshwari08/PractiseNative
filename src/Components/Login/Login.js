@@ -56,14 +56,14 @@ const Login = () => {
         </Text>
 
         <View style={styles.btn}>
-          <View style={[styles.button, styles.shadowProp]}>
+          <View elevation={12} style={styles.button}>
             <Image
               source={require('../../assets/googleIcon.png')}
               style={{width: 20, height: 25, marginTop: 2}}
             />
             <Text style={[styles.googlefb,styles.google]}>Google</Text>
           </View>
-          <View style={[styles.button, styles.shadowProp]}>
+          <View elevation={12} style={styles.button}>
             <Image
               source={require('../../assets/fbbb.png')}
               style={{width: 22, height: 25, marginBottom: 2}}
@@ -101,7 +101,7 @@ const Login = () => {
               height: 45,
               position: 'absolute',
               right: 28,
-              top: 12,
+              top: 14,
               zIndex: 999,
             }}>
             {isVisiblePassword ? (
@@ -215,11 +215,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
-    margin: 15,
-    gap: 5,
+    // padding: 15,
+    // margin: 15,
+    // gap: 5,
+    borderWidth:2,
     borderRadius: 6,
     marginBottom: 5,
+    borderColor:"#c9c7c7",
+    backgroundColor:'white'
   },
 
   shadowProp: {
