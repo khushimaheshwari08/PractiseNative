@@ -1,32 +1,45 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View,BackHandler} from 'react-native';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  BackHandler,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import NumericInput from '../../Common/NumericInput/NumericInput';
+import NormalSelect from '../../Common/NormalSelect/NormalSelect';
 
 const Dashboard = () => {
   const navigation = useNavigation();
+  const [no, setNo] = useState('')
+ 
   
-  // const disableBackButton =()=>{
-  //   BackHandler.exitApp()
-  //   return true;
-  // }
 
   const onLogout = async () => {
     await AsyncStorage.setItem('isLogin', JSON.stringify(false));
     navigation.replace('login');
-    // BackHandler.exitApp()
     return true;
   };
 
   return (
     <View style={styles.container}>
-   
-        <View style={styles.logoutBtn}>
+      <Text>
+        <NumericInput
+        placeholder="Enter Numeric"
+        value={no}
+        onChangeText={(no) => setNo(no)}
+        />
+      </Text>
+      <Text>
+        <NormalSelect/>
+      </Text>
+      <View style={styles.logoutBtn}>
         <TouchableOpacity onPress={() => onLogout()}>
           <Text style={styles.logoutText}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-     
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

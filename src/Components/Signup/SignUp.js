@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
 const SignUp = () => {
@@ -31,6 +32,7 @@ const SignUp = () => {
 
   return (
     <View style={styles.container}>
+      <ScrollView>
       <View>
         <View style={styles.headerImg}>
           <Image
@@ -134,12 +136,14 @@ const SignUp = () => {
           <Text style={[styles.signText,styles.joinUs]}>Join Us</Text>
         </View>
         </TouchableOpacity>
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate('login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('login')}>
       <View style={styles.join}>
         <Text style={styles.forgetPassword}>Have an account? Log in</Text>
       </View>
       </TouchableOpacity>
+      </View>
+     
+      </ScrollView>
     </View>
   );
   
@@ -269,7 +273,7 @@ const styles = StyleSheet.create({
   join: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
+    marginTop:100
   },
 
   joinUs: {

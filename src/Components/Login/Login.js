@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 
 const Login = () => {
@@ -17,7 +18,6 @@ const Login = () => {
   const [password, setPassword] = useState('123');
   const [loading, setLoading] = useState(false);
   const [isVisiblePassword, setIsVisiblePassword] = useState(true);
-
 
   const onDashboard = async () => {
     let temp = await AsyncStorage.getItem('userData');
@@ -40,126 +40,126 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <View style={styles.headerImg}>
-          <Image
-            source={require('../../assets/logo-light.png')}
-            style={{width: 100, height: 30, marginTop: 30}}
-          />
-        </View>
-        <View style={styles.content}>
-          <Text style={styles.welcome}>Welcome Back</Text>
-        </View>
-        <Text style={styles.course}>
-          You can search course, apply course and find scholarship for abroad
-          studies
-        </Text>
-
-        <View style={styles.btn}>
-          <View elevation={12} style={styles.button}>
+      <ScrollView>
+        <View>
+          <View style={styles.headerImg}>
             <Image
-              source={require('../../assets/googleIcon.png')}
-              style={{width: 20, height: 25, marginTop: 2}}
+              source={require('../../assets/logo-light.png')}
+              style={{width: 100, height: 30, marginTop: 30}}
             />
-            <Text style={[styles.googlefb,styles.google]}>Google</Text>
           </View>
-          <View elevation={12} style={styles.button}>
-            <Image
-              source={require('../../assets/fbbb.png')}
-              style={{width: 22, height: 25, marginBottom: 2}}
-            />
-            <Text style={[styles.googlefb,styles.fb]}>Facebook</Text>
+          <View style={styles.content}>
+            <Text style={styles.welcome}>Welcome Back</Text>
           </View>
-        </View>
-
-        <View style={styles.inputParent}>
-          <Image
-            source={require('../../assets/rightIcon.png')}
-            style={{
-              width: 20,
-              height: 20,
-              position: 'absolute',
-              right: 40,
-              top: 15,
-            }}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your Email"
-            placeholderTextColor="gray"
-            // autoFocus={true}
-            value={email}
-            onChangeText={email => setEmail(email)}
-          />
-        </View>
-        <View style={styles.inputParent}>
-          <TouchableOpacity
-            onPress={() => setIsVisiblePassword(!isVisiblePassword)}
-            style=
-            {{
-              width: 40,
-              height: 45,
-              position: 'absolute',
-              right: 28,
-              top: 14,
-              zIndex: 999,
-            }}>
-            {isVisiblePassword ? (
-              <Image
-                source={require('../../assets/hideIcons.png')}
-                style={{
-                  width: 30,
-                  height: 22,
-                  left:5,
-                }}
-              />
-            ) : (
-              <Image
-                source={require('../../assets/images.png')}
-                style={{
-                  width: 25,
-                  height: 25,
-                  left:6
-                }}
-              />
-            )}
-          </TouchableOpacity>
-          <TextInput
-            style={styles.input}
-            // secureTextEntry={true}
-            secureTextEntry={isVisiblePassword}
-            placeholder="Enter your Password"
-            placeholderTextColor="gray"
-            value={password}
-            onChangeText={password => setPassword(password)}
-          />
-        </View>
-        <TouchableOpacity
-          disabled={email && password ? false : true}
-          onPress={() => onDashboard()}>
-          <View style={styles.logBtn}>
-            <Text style={styles.loginText}>
-              {loading === true ? (
-                <ActivityIndicator size="small" color="#fff" />
-              ) : (
-                'Login'
-              )}
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <View style={styles.forgot}>
-          <Text style={styles.forgetPassword}>Forgot Password?</Text>
-        </View>
-      </View>
-
-      <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
-        <View style={styles.join}>
-          <Text style={styles.forgetPassword}>
-            Don't have an account join us?
+          <Text style={styles.course}>
+            You can search course, apply course and find scholarship for abroad
+            studies
           </Text>
+
+          <View style={styles.btn}>
+            <View elevation={12} style={styles.button}>
+              <Image
+                source={require('../../assets/googleIcon.png')}
+                style={{width: 20, height: 25, marginTop: 2}}
+              />
+              <Text style={[styles.googlefb, styles.google]}>Google</Text>
+            </View>
+            <View elevation={12} style={styles.button}>
+              <Image
+                source={require('../../assets/fbbb.png')}
+                style={{width: 22, height: 25, marginBottom: 2}}
+              />
+              <Text style={[styles.googlefb, styles.fb]}>Facebook</Text>
+            </View>
+          </View>
+
+          <View style={styles.inputParent}>
+            <Image
+              source={require('../../assets/rightIcon.png')}
+              style={{
+                width: 20,
+                height: 20,
+                position: 'absolute',
+                right: 40,
+                top: 15,
+              }}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your Email"
+              placeholderTextColor="gray"
+              // autoFocus={true}
+              value={email}
+              onChangeText={email => setEmail(email)}
+            />
+          </View>
+          <View style={styles.inputParent}>
+            <TouchableOpacity
+              onPress={() => setIsVisiblePassword(!isVisiblePassword)}
+              style={{
+                width: 40,
+                height: 45,
+                position: 'absolute',
+                right: 28,
+                top: 14,
+                zIndex: 999,
+              }}>
+              {isVisiblePassword ? (
+                <Image
+                  source={require('../../assets/hideIcons.png')}
+                  style={{
+                    width: 30,
+                    height: 22,
+                    left: 5,
+                  }}
+                />
+              ) : (
+                <Image
+                  source={require('../../assets/images.png')}
+                  style={{
+                    width: 25,
+                    height: 25,
+                    left: 6,
+                  }}
+                />
+              )}
+            </TouchableOpacity>
+            <TextInput
+              style={styles.input}
+              // secureTextEntry={true}
+              secureTextEntry={isVisiblePassword}
+              placeholder="Enter your Password"
+              placeholderTextColor="gray"
+              value={password}
+              onChangeText={password => setPassword(password)}
+            />
+          </View>
+          <TouchableOpacity
+            disabled={email && password ? false : true}
+            onPress={() => onDashboard()}>
+            <View style={styles.logBtn}>
+              <Text style={styles.loginText}>
+                {loading === true ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  'Login'
+                )}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View style={styles.forgot}>
+            <Text style={styles.forgetPassword}>Forgot Password?</Text>
+          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
+            <View style={styles.join}>
+              <Text style={styles.forgetPassword}>
+                Don't have an account join us?
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -218,11 +218,11 @@ const styles = StyleSheet.create({
     // padding: 15,
     // margin: 15,
     // gap: 5,
-    borderWidth:2,
+    borderWidth: 2,
     borderRadius: 6,
     marginBottom: 5,
-    borderColor:"#c9c7c7",
-    backgroundColor:'white'
+    borderColor: '#c9c7c7',
+    backgroundColor: 'white',
   },
 
   shadowProp: {
@@ -240,12 +240,12 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 
-google:{
+  google: {
     marginLeft: 7,
   },
 
-  fb:{
-    marginLeft:1,
+  fb: {
+    marginLeft: 1,
   },
 
   input: {
@@ -287,7 +287,7 @@ google:{
   join: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
+    marginTop: 115,
   },
 
   inputParent: {

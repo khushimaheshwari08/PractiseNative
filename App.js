@@ -35,7 +35,7 @@ const App = () => {
             options={{headerShown: false}}
             name="login"
             component={Login}
-            
+        
           />
           <Stack.Screen
             options={{headerShown: false}}
