@@ -9,7 +9,6 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableWithoutFeedback,
 } from 'react-native';
 
 const Login = () => {
@@ -17,8 +16,8 @@ const Login = () => {
   const [email, setEmail] = useState('kumar123@gmail.com');
   const [password, setPassword] = useState('123');
   const [loading, setLoading] = useState(false);
-  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-  const [text, setText] = useState(true);
+  const [isVisiblePassword, setIsVisiblePassword] = useState(true);
+
 
   const onDashboard = async () => {
     let temp = await AsyncStorage.getItem('userData');
@@ -62,14 +61,14 @@ const Login = () => {
               source={require('../../assets/googleIcon.png')}
               style={{width: 20, height: 25, marginTop: 2}}
             />
-            <Text style={styles.googlefb}>Google</Text>
+            <Text style={[styles.googlefb,styles.google]}>Google</Text>
           </View>
           <View style={[styles.button, styles.shadowProp]}>
             <Image
               source={require('../../assets/fbbb.png')}
               style={{width: 22, height: 25, marginBottom: 2}}
             />
-            <Text style={styles.googlefb}>Facebook</Text>
+            <Text style={[styles.googlefb,styles.fb]}>Facebook</Text>
           </View>
         </View>
 
@@ -88,7 +87,7 @@ const Login = () => {
             style={styles.input}
             placeholder="Enter your Email"
             placeholderTextColor="gray"
-            autoFocus={true}
+            // autoFocus={true}
             value={email}
             onChangeText={email => setEmail(email)}
           />
@@ -101,25 +100,26 @@ const Login = () => {
               width: 40,
               height: 45,
               position: 'absolute',
-              right: 40,
-              top: 11,
+              right: 28,
+              top: 12,
               zIndex: 999,
             }}>
             {isVisiblePassword ? (
               <Image
                 source={require('../../assets/hideIcons.png')}
                 style={{
-                  width: 20,
-                  height: 25,
-                
+                  width: 30,
+                  height: 22,
+                  left:5,
                 }}
               />
             ) : (
               <Image
-                source={require('../../assets/showIcons.png')}
+                source={require('../../assets/images.png')}
                 style={{
-                  width: 20,
+                  width: 25,
                   height: 25,
+                  left:6
                 }}
               />
             )}
@@ -139,7 +139,6 @@ const Login = () => {
           onPress={() => onDashboard()}>
           <View style={styles.logBtn}>
             <Text style={styles.loginText}>
-              {' '}
               {loading === true ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
@@ -203,7 +202,8 @@ const styles = StyleSheet.create({
 
   btn: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
+    // alignItems:'center',
     marginTop: 35,
     marginBottom: 25,
   },
@@ -237,13 +237,21 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 
+google:{
+    marginLeft: 7,
+  },
+
+  fb:{
+    marginLeft:1,
+  },
+
   input: {
     marginLeft: 15,
     marginBottom: 20,
     marginRight: 15,
     height: 50,
     borderColor: 'lightgray',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 6,
     paddingLeft: 10,
     color: 'black',

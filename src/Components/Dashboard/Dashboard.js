@@ -1,14 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View,BackHandler} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Dashboard = () => {
   const navigation = useNavigation();
+  
+  // const disableBackButton =()=>{
+  //   BackHandler.exitApp()
+  //   return true;
+  // }
 
   const onLogout = async () => {
     await AsyncStorage.setItem('isLogin', JSON.stringify(false));
     navigation.replace('login');
+    // BackHandler.exitApp()
+    return true;
   };
 
   return (

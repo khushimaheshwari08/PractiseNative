@@ -16,12 +16,13 @@ const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isVisiblePassword, setIsVisiblePassword] = useState(true);
 
   const onLogin = async () => {
     if (name !== '' && email !== '' && password !== '') {
       let temp={name: name,email:email,password:password};
       await AsyncStorage.setItem('userData', JSON.stringify(temp));
-      navigation.replace('login');
+      navigation.navigate('login');
       } else {
         alert('Please enter name, username and password');
       }
@@ -78,18 +79,39 @@ const SignUp = () => {
           />
         </View>
         <View style={styles.inputParent}>
-          <Image
-            source={require('../../assets/hideIcons.png')}
-            style={{
-              width: 20,
-              height: 25,
+        <TouchableOpacity
+            onPress={() => setIsVisiblePassword(!isVisiblePassword)}
+            style=
+            {{
+              width: 40,
+              height: 45,
               position: 'absolute',
-              right: 40,
+              right: 28,
               top: 12,
-            }}
-          />
+              zIndex: 999,
+            }}>
+            {isVisiblePassword ? (
+              <Image
+                source={require('../../assets/hideIcons.png')}
+                style={{
+                  width: 30,
+                  height: 22,
+                  left:5,
+                }}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/images.png')}
+                style={{
+                  width: 25,
+                  height: 25,
+                  left:6
+                }}
+              />
+            )}
+          </TouchableOpacity>
           <TextInput
-          secureTextEntry={true}
+           secureTextEntry={isVisiblePassword}
             style={styles.input}
             placeholder="Password"
             placeholderTextColor="gray"
@@ -208,7 +230,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     height: 50,
     borderColor: 'lightgray',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 6,
     paddingLeft: 10,
     color:'black'
