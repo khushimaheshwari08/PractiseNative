@@ -4,6 +4,7 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 const NumericInput = (props) => {
   return (
       <View>
+                <Text style={styles.Text}>Numeric Input</Text>
         <TextInput
           style={styles.input}
           keyboardType = 'numeric'
@@ -11,8 +12,8 @@ const NumericInput = (props) => {
           placeholderTextColor="gray"
           value={props.value}
           onChangeText={props.onChangeText}
-          
         />
+
       </View>
   );
 };
@@ -24,7 +25,8 @@ const styles = StyleSheet.create({
 
 
   input: {
-    margin: 20,
+    marginLeft:20,
+    marginRight:20,
     height: 50,
     borderColor: 'lightgray',
     borderWidth: 2,
@@ -32,4 +34,12 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     color: 'black',
   },
+  
+  Text:{
+    marginLeft:20,
+    color: 'black',
+    marginTop:20,
+    marginBottom:10,
+    fontWeight:'bold',
+  }
 });
