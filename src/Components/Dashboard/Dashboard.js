@@ -18,6 +18,7 @@ import Switches from '../../Common/Switch/Switch';
 import ImageSelect from '../../Common/ImageSelect/ImageSelect';
 import DownloadImage from '../../Common/Download Image/DownloadImage';
 import ShareSnap from '../../Common/ShareSnap/ShareSnap';
+import Rangeslide from '../../Common/Rangleslide/Rangeslide';
 
 
 const data = [
@@ -43,7 +44,9 @@ const Dashboard = () => {
     return true;
   };
 
- 
+   const onSlidingComplete = (low, high) => {
+    console.log(low, high);
+  };
 
   return (
     <View style={styles.container}>
@@ -84,11 +87,18 @@ const Dashboard = () => {
       <Loading/>
       
       <Switches/>
+       <Rangeslide
+        maxPrice={100}
+        minPrice={0}
+        steps={10}
+        onSlidingComplete={onSlidingComplete}
+      /> 
+
       <DownloadImage/>
-      {/* <ShareSnap/> */}
+      
       <ImageSelect/>
 
-    
+      <ShareSnap/>
 
       </ScrollView>
     </View>

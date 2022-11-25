@@ -23,8 +23,11 @@ export default Switches;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 15,
+    marginBottom:25,
     flexDirection: 'row',
   },
+
   switch: {
     marginLeft: 20,
     marginTop: 15,

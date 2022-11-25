@@ -9,6 +9,7 @@ import {
   Image,
   Platform,
   PermissionsAndroid,
+
 } from 'react-native';
 
 // import ImagePicker from 'react-native-image-picker';
@@ -56,6 +57,7 @@ const ImageSelect = () => {
   };
 
   const captureImage = async type => {
+   
     let options = {
       mediaType: type,
       maxWidth: 300,
@@ -84,6 +86,7 @@ const ImageSelect = () => {
           alert(response.errorMessage);
           return;
         }
+      
         console.log('base64 -> ', response.base64);
         console.log('uri -> ', response.uri);
         console.log('width -> ', response.width);
@@ -95,6 +98,8 @@ const ImageSelect = () => {
       });
     }
   };
+  
+
 
   const chooseFile = type => {
     let options = {
@@ -131,7 +136,7 @@ const ImageSelect = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView >
       <Text style={styles.Text}>Image Picker</Text>
       <View style={styles.container}>
         <Image source={{uri: filePath.uri}} style={styles.imageStyle} />
@@ -160,6 +165,7 @@ const ImageSelect = () => {
           onPress={() => chooseFile('video')}>
           <Text style={styles.textStyle}>Select Video</Text>
         </TouchableOpacity>
+        
       </View>
     </SafeAreaView>
   );
@@ -168,11 +174,10 @@ const ImageSelect = () => {
 export default ImageSelect;
 
 const styles = StyleSheet.create({
+
   container: {
-    // padding: 10,
     backgroundColor: '#fff',
     alignItems: 'center',
-    marginBottom:100000
   },
   Text:{
     marginLeft:20,
@@ -192,10 +197,5 @@ const styles = StyleSheet.create({
     padding: 5,
     marginVertical: 10,
     width: 250,
-  },
-  imageStyle: {
-    width: 200,
-    height: 200,
-    margin: 5,
   },
 });
