@@ -8,6 +8,7 @@ const SearchSelect = props => {
        <Text style={styles.Text}>Search Select</Text>
       <Dropdown
         style={styles.input}
+        placeholderStyle={styles.placeholderStyle}
         itemTextStyle={{color: 'black'}}
         selectedTextStyle={{color: 'black'}}
         data={props.data}
@@ -46,6 +47,10 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginBottom:10,
     fontWeight:'bold',
-  }
+  },
+  placeholderStyle: {
+    fontSize: 15,
+    color:'gray'
+  },
 });
 

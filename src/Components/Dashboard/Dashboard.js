@@ -19,7 +19,10 @@ import ImageSelect from '../../Common/ImageSelect/ImageSelect';
 import DownloadImage from '../../Common/Download Image/DownloadImage';
 import ShareSnap from '../../Common/ShareSnap/ShareSnap';
 import Rangeslide from '../../Common/Rangleslide/Rangeslide';
-
+import DateTime from '../../Common/Date/Date';
+import TimeLine from '../../Common/TimeLine/TimeLine';
+import Modal from '../../Common/Modal/ModalComponent';
+import ModalComponent from '../../Common/Modal/ModalComponent';
 
 const data = [
   {label: 'Item 1', value: '1'},
@@ -44,61 +47,69 @@ const Dashboard = () => {
     return true;
   };
 
-   const onSlidingComplete = (low, high) => {
+  const onSlidingComplete = (low, high) => {
     console.log(low, high);
   };
 
   return (
     <View style={styles.container}>
-       <ScrollView>
-      <View style={styles.logoutBtn}>
-        <TouchableOpacity onPress={() => onLogout()}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-      </View>
-      <NumericInput
-        placeholder="Enter Numeric"
-        value={no}
-        onChangeText={no => setNo(no)}
-      />
+      <ScrollView>
+        <View style={styles.logoutBtn}>
+          <TouchableOpacity onPress={() => onLogout()}>
+            <Text style={styles.logoutText}>Logout</Text>
+          </TouchableOpacity>
+        </View>
 
-      <NormalSelect
-        placeholder="Select here"
-        value={value}
-        data={data}
-        labelField="label"
-        valueField="value"
-        onChange={value => setValue(value)}
-      />
+        <NumericInput
+          placeholder="Enter Numeric"
+          value={no}
+          onChangeText={no => setNo(no)}
+        />
 
-      <SearchSelect
-        value={value}
-        data={data}
-        labelField="label"
-        valueField="value"
-        onChange={value => setValue(value)}
-      />
+        <NormalSelect
+          placeholder="Select here"
+          value={value}
+          data={data}
+          labelField="label"
+          valueField="value"
+          onChange={value => setValue(value)}
+        />
 
-      <Checkbox
-        value={toggleCheckBox}
-        onValueChange={toggleCheckBox => setToggleCheckBox(toggleCheckBox)}
-      />
+        <SearchSelect
+          placeholder="Search here"
+          value={value}
+          data={data}
+          labelField="label"
+          valueField="value"
+          onChange={value => setValue(value)}
+        />
 
-      <Loading/>
-      
-      <Switches/>
-       <Rangeslide
-        maxPrice={100}
-        minPrice={0}
-        steps={10}
-        onSlidingComplete={onSlidingComplete}
-      /> 
+        <Checkbox
+          value={toggleCheckBox}
+          onValueChange={toggleCheckBox => setToggleCheckBox(toggleCheckBox)}
+        />
 
-      <DownloadImage/>
-      
-      <ImageSelect/>
+        <Loading />
 
-      <ShareSnap/>
+        <Switches />
+        <Rangeslide
+          maxPrice={100}
+          minPrice={0}
+          steps={10}
+          onSlidingComplete={onSlidingComplete}
+        />
+
+        <DownloadImage />
+
+        <ImageSelect />
+
+        <ShareSnap />
+
+        <DateTime />
+
+        <TimeLine/>
+
+       <ModalComponent/>
 
       </ScrollView>
     </View>
