@@ -21,8 +21,9 @@ import ShareSnap from '../../Common/ShareSnap/ShareSnap';
 import Rangeslide from '../../Common/Rangleslide/Rangeslide';
 import DateTime from '../../Common/Date/Date';
 import TimeLine from '../../Common/TimeLine/TimeLine';
-import Modal from '../../Common/Modal/ModalComponent';
 import ModalComponent from '../../Common/Modal/ModalComponent';
+import Timepick from '../../Common/Time/Time';
+import Timepicked from '../../Common/Time/Time';
 
 const data = [
   {label: 'Item 1', value: '1'},
@@ -106,6 +107,9 @@ const Dashboard = () => {
         <ShareSnap />
 
         <DateTime />
+
+<Timepicked/>
+    
 
         <TimeLine/>
 

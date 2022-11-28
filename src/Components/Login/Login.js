@@ -27,7 +27,7 @@ const Login = () => {
       if (email === item.email && password === item.password) {
         setTimeout(async () => {
           await AsyncStorage.setItem('isLogin', JSON.stringify(true));
-          navigation.replace('dashboard');
+          navigation.replace('navigation');
         }, 2000);
       } else {
         alert('Incorrect username and password');

@@ -22,7 +22,7 @@ const TimeLine = () => {
       lineColor='rgb(45,156,219)'
       innerCircle={'dot'}
      timeStyle={{textAlign: 'center', backgroundColor:'#ff9797', color:'white', padding:5, borderRadius:13}}
-     titleStyle={{color:'gray'}}
+     titleStyle={{color:'gray',marginTop:-11}}
      descriptionStyle={{color:'gray'}}
       />
     </View>

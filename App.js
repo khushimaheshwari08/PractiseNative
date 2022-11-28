@@ -6,6 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUp from './src/Components/Signup/SignUp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Navigation from './src/Components/Navigation/Navigation';
+import SplashScreen from 'react-native-splash-screen'
 
 
 const Stack = createNativeStackNavigator();
@@ -25,12 +27,19 @@ const App = () => {
   useEffect(() => {
     loginData();
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    },2000)
+  }, [])
+  
   
   return (
     <>
     {render ?(
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={auth===true ?"dashboard":"login"}>
+        <Stack.Navigator initialRouteName={auth===true ?"navigation":"login"}>
           <Stack.Screen
             options={{headerShown: false}}
             name="login"
@@ -44,8 +53,8 @@ const App = () => {
           />
           <Stack.Screen
             options={{headerShown: false}}
-            name="dashboard"
-            component={Dashboard}
+            name="navigation"
+            component={Navigation}
           />
         </Stack.Navigator>
       </NavigationContainer>
