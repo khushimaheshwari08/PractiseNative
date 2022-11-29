@@ -22,8 +22,10 @@ import Rangeslide from '../../Common/Rangleslide/Rangeslide';
 import DateTime from '../../Common/Date/Date';
 import TimeLine from '../../Common/TimeLine/TimeLine';
 import ModalComponent from '../../Common/Modal/ModalComponent';
-import Timepick from '../../Common/Time/Time';
 import Timepicked from '../../Common/Time/Time';
+import Swipe from '../../Common/Swipe/Swipe';
+import Commoncamera from '../../Common/Camera/Commoncamera';
+import QRScanner from '../../Common/QRScanner/QRScanner';
 
 const data = [
   {label: 'Item 1', value: '1'},
@@ -108,10 +110,15 @@ const Dashboard = () => {
 
         <DateTime />
 
-<Timepicked/>
+        <Timepicked/>
     
 
         <TimeLine/>
+      
+      <Swipe/>
+      <Commoncamera/>
+
+      <QRScanner/>
 
        <ModalComponent/>
 

@@ -12,7 +12,7 @@ const Loading = () => {
   const onLoading = () => {
     setLoading(true)
   }
-  return (
+  return ( 
     <View style={styles.logBtn}>
       <TouchableOpacity onPress={() => onLoading()}>
         <Text style={styles.loadingText}>

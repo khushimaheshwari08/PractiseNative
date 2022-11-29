@@ -18,6 +18,7 @@
     "@react-navigation/stack": "^6.3.4",
     "react": "18.1.0",
     "react-native": "0.70.6",
+    "react-native-camera-kit": "^13.0.0",
     "react-native-date-picker": "^4.2.6",
     "react-native-element-dropdown": "^2.4.0",
     "react-native-image-picker": "^4.10.1",
@@ -28,6 +29,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-share": "^8.0.0",
     "react-native-splash-screen": "^3.3.0",
+    "react-native-swipe-gestures": "^1.0.5",
     "react-native-timeline-flatlist": "^0.8.0",
     "rn-fetch-blob": "^0.12.0",
     "rn-range-slider": "^2.2.2"

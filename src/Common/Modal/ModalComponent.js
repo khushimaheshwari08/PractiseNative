@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     backgroundColor: '#ffffff',
-    borderRadius:10
+    borderRadius:10,
+    marginLeft:12
   },
 
   modalText: {
