@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import Share from "react-native-share";
 
-const url = "https://awesome.contents.com/";
+const url = "https://pbs.twimg.com/";
 const title = "Temporary";
 const message = "Please check this out.";
 
@@ -15,7 +15,7 @@ const options = {
 
 const ShareSnap = () => {
   const [image, setImage] = useState(
-    "https://raw.githubusercontent.com/AboutReact/sampleresource/master/gift.png"
+    "https://pbs.twimg.com/profile_images/486929358120964097/gNLINY67_400x400.png"
   );
   const share = async (customOptions = options) => {
     try {
@@ -40,7 +40,7 @@ const ShareSnap = () => {
             await share({
               title: "Sharing image file from Demo Test app",
               message: "Please take a look at this image",
-              url:"https://raw.githubusercontent.com/AboutReact/sampleresource/master/gift.png"
+              url:"https://pbs.twimg.com/profile_images/486929358120964097/gNLINY67_400x400.png"
             });
           }}
           title="Share Image"

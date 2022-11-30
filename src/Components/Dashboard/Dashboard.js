@@ -106,8 +106,8 @@ const Dashboard = () => {
 
         <ImageSelect />
 
-        <ShareSnap />
-
+        <ShareSnap/>
+     
         <DateTime />
 
         <Timepicked/>
@@ -116,11 +116,11 @@ const Dashboard = () => {
         <TimeLine/>
       
       <Swipe/>
+      <ModalComponent/>
       <Commoncamera/>
-
       <QRScanner/>
 
-       <ModalComponent/>
+     
 
       </ScrollView>
     </View>

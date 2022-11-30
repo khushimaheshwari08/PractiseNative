@@ -13,7 +13,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 const DownloadImage = () => {
   const REMOTE_IMAGE_PATH =
-    'https://raw.githubusercontent.com/AboutReact/sampleresource/master/gift.png';
+    'https://pbs.twimg.com/profile_images/486929358120964097/gNLINY67_400x400.png';
   const checkPermission = async () => {
     if (Platform.OS === 'ios') {
       downloadImage();
