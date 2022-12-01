@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {Text,StyleSheet} from 'react-native';
+import {Text,StyleSheet, Image} from 'react-native';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 
 const Swipe =() => {
  
-  const [text, setText] = useState('I\'m ready to get swiped!');
+  const [text, setText] = useState('');
   const [gestureName, setGestureName] = useState('none');
   const [backgroundColor, setBackgroundColor] = useState('#da1b3f');
 
@@ -48,7 +48,8 @@ const Swipe =() => {
           height: 100,
         }}
         >
-        <Text style={[styles.center,styles.Text]}>{text}</Text>
+        <Text style={[styles.center,styles.Text]}>I\'m ready to get swiped!</Text>
+
         <Text style={styles.center}>onSwipe received gesture: {gestureName}</Text>
       </GestureRecognizer>
     );

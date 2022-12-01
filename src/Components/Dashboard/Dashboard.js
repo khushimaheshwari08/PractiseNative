@@ -23,9 +23,11 @@ import DateTime from '../../Common/Date/Date';
 import TimeLine from '../../Common/TimeLine/TimeLine';
 import ModalComponent from '../../Common/Modal/ModalComponent';
 import Timepicked from '../../Common/Time/Time';
-import Swipe from '../../Common/Swipe/Swipe';
 import Commoncamera from '../../Common/Camera/Commoncamera';
 import QRScanner from '../../Common/QRScanner/QRScanner';
+import Swiping from '../../Common/Swiping/Swiping';
+// import Swipe from '../../Common/Swipe/Swipe'
+
 
 const data = [
   {label: 'Item 1', value: '1'},
@@ -115,7 +117,11 @@ const Dashboard = () => {
 
         <TimeLine/>
       
-      <Swipe/>
+      {/* <Swipe/> */}
+
+      <Swiping/>
+
+   
       <ModalComponent/>
       <Commoncamera/>
       <QRScanner/>
