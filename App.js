@@ -8,7 +8,6 @@ import SignUp from './src/Components/Signup/SignUp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Navigation from './src/Components/Navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen'
-import xyz from './src/Components/xyz/xyz';
 import StartCamera from './src/Common/Camera/StartCamera';
 import StartQRScanner from './src/Common/QRScanner/StartQRScanner';
 

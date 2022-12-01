@@ -1,24 +1,27 @@
-
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
   View,
   PermissionsAndroid,
   Alert,
   Platform,
   TouchableHighlight,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
 
 import {CameraScreen} from 'react-native-camera-kit';
 
 const StartCamera = () => {
-  
-
+  const navigation = useNavigation();
   const [isPermitted, setIsPermitted] = useState(false);
   const [captureImages, setCaptureImages] = useState([]);
+  const [imagePath, setImagePath] = useState('');
 
   const requestCameraPermission = async () => {
     try {
@@ -89,36 +92,102 @@ const StartCamera = () => {
 
   const onBottomButtonPressed = event => {
     const images = JSON.stringify(event.captureImages);
+    setImagePath(event.captureImages[0].uri);
+
     if (event.type === 'left') {
       setIsPermitted(false);
     } else if (event.type === 'right') {
       setIsPermitted(false);
       setCaptureImages(images);
-    } else {
-      Alert.alert(
-        event.type,
-        images,
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-        {cancelable: false},
+    }
+    // else {
+    //   Alert.alert(
+    //     event.type,
+    //     images,
+    //     [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+    //     {cancelable: false},
+    //   );
+    // }
+  };
+
+  const saveImageToGallery = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Storage Permission Required',
+          message: 'App needs access to your storage to download Photos',
+        },
       );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Storage Permission Granted.');
+        // savePicture();
+        CameraRoll.save(imagePath);
+        ToastAndroid.showWithGravity(
+          'Image Successfully Saved!!',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+        navigation.goBack();
+      } else {
+        alert('Storage Permission Not Granted');
+      }
+    } catch (err) {
+      console.warn(err);
     }
   };
 
   return (
     <SafeAreaView style={{flex: 1}}>
-     
-        <View style={{flex: 1 }}>
+      <View style={{flex: 1}}>
+        {imagePath === '' ? (
           <CameraScreen
-            style={{flex: 1}}
-            actions={{rightButtonText: 'Done', leftButtonText: 'Cancel'}}
             onBottomButtonPressed={event => onBottomButtonPressed(event)}
-            captureButtonImage={require('../../assets/capture.png')}
-            captureButtonImageStyle={{height: 80}}
             cameraFlipImage={require('../../assets/flip.png')}
+            cameraFlipImageStyle={{
+              height: 80,
+            }}
+            captureButtonImage={require('../../assets/capture.png')}
+            captureButtonImageStyle={{
+              height: 80,
+              marginRight: 170,
+            }}
             hideControls={false}
             showCapturedImageCount={false}
           />
-        </View>
+        ) : (
+          <View style={{flex: 1, position: 'relative'}}>
+            <Image
+              source={{
+                uri: imagePath,
+              }}
+              style={{flex: 1}}
+            />
+            <View
+              style={{
+                position: 'absolute',
+                bottom: 10,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '100%',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image
+                  style={{height: 120, width: 120}}
+                  source={require('../../assets/wrong.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={saveImageToGallery}>
+                <Image
+                  style={{height: 70, width: 70, marginRight: 20}}
+                  source={require('../../assets/correct.png')}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
@@ -155,5 +224,9 @@ const styles = StyleSheet.create({
     padding: 5,
     color: 'white',
     textAlign: 'center',
+  },
+  iconContainer: {
+    position: 'absolute',
+    bottom: 10,
   },
 });

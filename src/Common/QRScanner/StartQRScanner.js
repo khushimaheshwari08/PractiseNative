@@ -11,23 +11,20 @@ import {
 } from 'react-native';
 
 import {CameraScreen} from 'react-native-camera-kit';
- 
+
 const StartQRScanner = () => {
-  
   const [qrvalue, setQrvalue] = useState('');
   const [opneScanner, setOpneScanner] = useState(false);
- 
+
   const onOpenlink = () => {
-   
     Linking.openURL(qrvalue);
   };
- 
-  const onBarcodeScan = (qrvalue) => {
-   
+
+  const onBarcodeScan = qrvalue => {
     setQrvalue(qrvalue);
     setOpneScanner(false);
   };
- 
+
   const onOpneScanner = () => {
     if (Platform.OS === 'android') {
       async function requestCameraPermission() {
@@ -40,7 +37,6 @@ const StartQRScanner = () => {
             },
           );
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            
             setQrvalue('');
             setOpneScanner(true);
           } else {
@@ -51,64 +47,59 @@ const StartQRScanner = () => {
           console.warn(err);
         }
       }
-      
+
       requestCameraPermission();
     } else {
       setQrvalue('');
       setOpneScanner(true);
     }
   };
- 
+
   return (
     <SafeAreaView style={{flex: 1}}>
-    
-        <View style={{flex: 1}}>
-          <CameraScreen
-            showFrame={true}
-          
-            scanBarcode={true}
-           
-            laserColor={'blue'}
-           
-            frameColor={'yellow'}
-           
-            colorForScannerFrame={'black'}
-    
-           
-            onReadCode={(event) =>
-              onBarcodeScan(event.nativeEvent.codeStringValue)
-            }
-          />
-        </View>
-   
-        <View style={styles.container}>
-          {/* <Text style={styles.titleText}>
+      <View style={{flex: 1}}>
+        <CameraScreen
+          showFrame={true}
+          scanBarcode={true}
+          laserColor={'blue'}
+          frameColor={'yellow'}
+          colorForScannerFrame={'black'}
+          onReadCode={event => onBarcodeScan(event.nativeEvent.codeStringValue)}
+        />
+      </View>
+
+      <View style={styles.container}>
+        {/* <Text style={styles.titleText}>
             Barcode and QR Code Scanner using Camera in React Native
           </Text> */}
-          <Text style={styles.textStyle}>
-            {qrvalue ? 'Scanned Result: ' + qrvalue : ''}
-          </Text>
-          {qrvalue.includes('https://') ||
-          qrvalue.includes('http://') ||
-          qrvalue.includes('geo:') ? (
-            <TouchableHighlight onPress={onOpenlink}>
-              <Text style={styles.textLinkStyle}>
-                {
-                  qrvalue.includes('geo:') ?
-                  'Open in Map' : 'Open Link'
-                }
-              </Text>
-            </TouchableHighlight>
-          ) : null}
-
-        </View>
-     
+        {qrvalue ? (
+          <View
+            style={{
+              backgroundColor: 'white',
+              padding: 10,
+              borderRadius: 10,
+            }}>
+            <Text style={styles.textStyle}>{'Scanned Result: ' + qrvalue}</Text>
+          </View>
+        ) : (
+          ''
+        )}
+        {qrvalue.includes('https://') ||
+        qrvalue.includes('http://') ||
+        qrvalue.includes('geo:') ? (
+          <TouchableHighlight onPress={onOpenlink}>
+            <Text style={styles.textLinkStyle}>
+              {qrvalue.includes('geo:') ? 'Open in Map' : 'Open Link'}
+            </Text>
+          </TouchableHighlight>
+        ) : null}
+      </View>
     </SafeAreaView>
   );
 };
- 
+
 export default StartQRScanner;
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -125,8 +116,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     textAlign: 'center',
-    padding: 10,
-    marginTop: 16,
   },
   buttonStyle: {
     fontSize: 16,
